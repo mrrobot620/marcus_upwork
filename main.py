@@ -111,8 +111,8 @@ def isAlreadyDownloaded(file: str , files_dict: dict) -> bool:
 
 def createDownloadedFile(filename: str, data: dict) -> None:
     with open(filename, 'a') as f:
-        for key in data.items():
-            f.write(f"{key}")
+        for key , value in data.items():
+            f.writelines(f"{key}\n")
     print(f'{filename} created with music metadata')
 
 def download_file2(data_key): 
@@ -133,7 +133,7 @@ def downloadFromFile() -> None:
         files = f.readlines()
 
     for file in files:
-        download_file2(file)
+        download_file2(file.strip())
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == 'downloadFromFile':
